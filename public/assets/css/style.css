@@ -438,6 +438,7 @@ Saas Landing CSS
 
 .saas-service-card {
   padding: 40px 30px;
+  height: 307.33px;
   -webkit-box-shadow: 0px 0px 20px 1px #f3f0f0;
           box-shadow: 0px 0px 20px 1px #f3f0f0;
   margin-bottom: 30px;
@@ -496,6 +497,13 @@ Saas Landing CSS
   font-size: 22px;
   margin-bottom: 15px;
 }
+
+.saas-service-card h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 200;
+}
+
 
 .saas-service-card:hover {
   margin-top: -5px;
