@@ -2,6 +2,7 @@ const email = document.getElementById("email");
 const month = document.getElementById("month");
 const day = document.getElementById("day");
 const year = document.getElementById("year");
+const uid = document.getElementById("uid");
 
 const url = "https://projecthtp.herokuapp.com/";
 // const url = "http://localhost:7006/";
@@ -10,24 +11,16 @@ const url = "https://projecthtp.herokuapp.com/";
 document.getElementById("sigin").addEventListener('click', async () => {
 
 
-    let date = new Date(
-        month.value + "/" + day.value + "/" + year.value
-    );
-    if(!email.value){
-        alert("Email is required");
+
+    if (!email.value) {
+        alert("Email is required!");
         return;
     }
-    if (date?.toString() === "Invalid Date") {
-        alert("Date of birth Required")
+    if (!uid) {
+        alert("Uid is required!");
         return
     };
-    console.log(date)
-    var d = new Date(date);
-    var d2 = new Date(date);
-      d.setHours(0, 0, 0, 0);
-      d2.setHours(23);
-      console.log(d.toISOString())
-      console.log(d2.toISOString())
+
     const respons = await fetch(url + 'searchPatientByEmailAndDateOfBirth', {
         method: 'POST', // or 'PUT'
         headers: {
@@ -35,17 +28,16 @@ document.getElementById("sigin").addEventListener('click', async () => {
         },
         body: JSON.stringify({
             email: email.value,
-            d1:d.toISOString(),
-            d2:d2.toISOString(),
+            uid: uid.value,
         }),
     })
     console.log(respons)
     const data = await respons.json();
-    console.log('Success:',data );
-    if(data?.patients?.length){
+    console.log('Success:', data);
+    if (data?.patients?.length) {
         sessionStorage.setItem("patient", JSON.stringify(data.patients));
         window.location.href = 'resultDetails.html';
-    }else{
+    } else {
         alert("No result found")
     }
 });
